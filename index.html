@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <title>Library</title>
+</head>
+
+<body>
+  <h1>Library</h1>
+
+  <div class="container"></div>
+
+  <button class="btn new-book-btn">NEW BOOK</button>
+
+  <div class="new-book-form">
+    <form action="" class="form-container">
+      <label for="title"></label>
+      <input type="text" placeholder="Enter title" name="title" required>
+
+      <label for="author"></label>
+      <input type="text" placeholder="Enter author" name="author" required>
+
+      <label for="pages"></label>
+      <input type="number" placeholder="Enter number of pages" name="pages"
+        required>
+
+      <input type="checkbox" name="read">
+      <label for="read"> I have a bike</label>
+
+      <button type="submit" class="btn add-book-btn">Add Book</button>
+      <button class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
