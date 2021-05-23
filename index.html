@@ -16,24 +16,28 @@
 <body>
   <h1>Library</h1>
 
-  <div class="container"></div>
-
   <button class="btn new-book-btn">NEW BOOK</button>
+
+  <div class="container"></div>
 
   <div class="new-book-form">
     <form action="" class="form-container">
-      <label for="title"></label>
+      <p>Add new book</p>
+      <label for="title">Book title</label>
       <input type="text" placeholder="Enter title" name="title" required>
 
-      <label for="author"></label>
+      <label for="author">Book author</label>
       <input type="text" placeholder="Enter author" name="author" required>
 
-      <label for="pages"></label>
+      <label for="pages">Number of pages</label>
       <input type="number" placeholder="Enter number of pages" name="pages"
         required>
+      <div>
+        <input type="checkbox" name="read" required>
+        <label for="read"> I read this book</label>
+      </div>
 
-      <input type="checkbox" name="read">
-      <label for="read"> I have a bike</label>
+
 
       <button type="submit" class="btn add-book-btn">Add Book</button>
       <button class="btn cancel" onclick="closeForm()">Close</button>

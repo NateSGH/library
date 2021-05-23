@@ -35,6 +35,7 @@ addBookToLibrary(theLotr);
 
 function displayBook(book) {
   const bookDiv = document.createElement("div");
+  const bookInfoDiv = document.createElement("div");
   const bookTitle = document.createElement("h2");
   const removeBookBtn = document.createElement("button");
   const bookAuthor = document.createElement("p");
@@ -43,6 +44,7 @@ function displayBook(book) {
   const bookReadIcon = document.createElement("i");
 
   bookDiv.classList.add("book");
+  bookInfoDiv.classList.add("book-info-container");
   bookReadBtn.classList.add("btn-read");
   bookReadIcon.classList.add("far");
   removeBookBtn.classList.add("btn-remove");
@@ -61,57 +63,59 @@ function displayBook(book) {
   }
 
   container.appendChild(bookDiv);
-  bookDiv.appendChild(bookTitle);
-  bookDiv.appendChild(bookAuthor);
-  bookDiv.appendChild(bookPages);
-  bookDiv.appendChild(bookReadBtn);
+  bookDiv.appendChild(bookInfoDiv);
+  bookInfoDiv.appendChild(bookTitle);
+  bookInfoDiv.appendChild(bookAuthor);
+  bookInfoDiv.appendChild(bookPages);
+  bookInfoDiv.appendChild(bookReadBtn);
   bookReadBtn.appendChild(bookReadIcon);
-  bookDiv.appendChild(removeBookBtn);
+  bookInfoDiv.appendChild(removeBookBtn);
+
+  changeReadStatusOnClick(bookReadBtn, book);
+  removeBookOnClick(removeBookBtn, book);
 }
 
 function displayLibrary() {
   myLibrary.forEach((book) => {
     displayBook(book);
   });
-  changeReadStatusOnClick(document.querySelectorAll(".btn-read"));
-  removeBookOnClick(document.querySelectorAll(".btn-remove"));
 }
 
 function openForm() {
-  formDiv.style.display = "block";
+  formDiv.style.display = "flex";
+  formDiv.style.flexDirection = "column";
 }
 
 function closeForm() {
   formDiv.style.display = "none";
 }
 
-function changeReadStatusOnClick(readBtns) {
-  readBtns.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      btn.childNodes[1].classList.toggle("fa-check-circle");
-      btn.childNodes[1].classList.toggle("fa-times-circle");
+function changeReadStatusOnClick(btn, bookObj) {
+  btn.addEventListener("click", () => {
+    btn.querySelector("i").classList.toggle("fa-check-circle");
+    btn.querySelector("i").classList.toggle("fa-times-circle");
 
-      if (myLibrary[index].read) {
-        myLibrary[index].read = false;
-      } else {
-        myLibrary[index].read = true;
-      }
-      console.log(myLibrary[index]);
-    });
+    if (bookObj.read) {
+      bookObj.read = false;
+    } else {
+      bookObj.read = true;
+    }
+    console.log(bookObj.read);
   });
 }
 
-function removeBookOnClick(removeBtns) {
-  removeBtns.forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      console.log(myLibrary[index]);
-      myLibrary.splice(index, 1);
-      console.log(myLibrary);
-      const divBooks = document.querySelectorAll(".book");
+function removeBookOnClick(btn, bookObj) {
+  btn.addEventListener("click", () => {
+    console.log(bookObj);
+    const bookIndex = myLibrary.indexOf(bookObj);
+    console.log(bookIndex);
+    myLibrary.splice(myLibrary.indexOf(bookObj), 1);
 
-      console.log(divBooks[index]);
-      divBooks[index].remove();
-    });
+    const divBooks = document.querySelectorAll(".book");
+    console.log(divBooks[bookIndex]);
+    divBooks[bookIndex].remove();
+
+    console.log(myLibrary);
   });
 }
 
@@ -126,8 +130,8 @@ function addNewBookByUser(event) {
   event.preventDefault();
   newBookForm.reset();
   closeForm();
-  // displayBook(newBook);
-  displayLibrary();
+  displayBook(newBook);
+  // displayLibrary();
   console.log(myLibrary);
 }
 
@@ -138,5 +142,29 @@ newBookForm.addEventListener("submit", (event) => {
   addNewBookByUser(event);
 });
 
-console.log(theHobbit);
 displayLibrary();
+
+// let readBtns = document.getElementsByClassName("btn-read");
+// console.log(readBtns);
+
+// // for (i = 0; i < readBtns.length; i++) {
+// //   console.log(readBtns[i]);
+// // }
+
+// [...readBtns].forEach((btn, index) => {
+//   // Array.prototype.forEach.call(readBtns, function (btn) {
+//   console.log(btn);
+//   btn.addEventListener("click", () => {
+//     console.log(btn);
+//     console.log(readBtns);
+//     //   btn.childNodes[1].classList.toggle("fa-check-circle");
+//     //   btn.childNodes[1].classList.toggle("fa-times-circle");
+
+//     //   if (myLibrary[index].read) {
+//     //     myLibrary[index].read = false;
+//     //   } else {
+//     //     myLibrary[index].read = true;
+//     //   }
+//     //   console.log(myLibrary[index]);
+//   });
+// });

@@ -2,20 +2,55 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: 100;
+  align-self: center;
+}
+
+.new-book-btn {
+  align-self: flex-end;
+  width: 100px;
+  height: 25px;
+}
+
+.container {
+  align-self: center;
+  width: 70vw;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
+  grid-gap: 20px;
 }
 
 /* The popup form div - hidden by default */
 .new-book-form {
   display: none;
   position: fixed;
-  bottom: 0;
-  right: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border: 3px solid #f1f1f1;
-  z-index: 9;
+  z-index: 1; /* Sit on top */
 }
 
 .form-container {
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+
   padding: 10px;
   background-color: white;
+}
+
+.book {
+  background-color: antiquewhite;
+  border: 1px solid black;
+  margin: 5px;
+}
+
+.book-info-container {
+  margin: 10px;
 }
