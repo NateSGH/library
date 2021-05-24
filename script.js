@@ -3,7 +3,7 @@ const newBookBtn = document.querySelector(".new-book-btn");
 const addBookBtn = document.querySelector(".add-book-btn");
 const cancelBtn = document.querySelector(".cancel");
 const formDiv = document.querySelector(".new-book-form");
-const newBookForm = document.querySelector(".form-container");
+const newBookForm = document.querySelector(".form");
 
 let myLibrary = [];
 
@@ -82,8 +82,7 @@ function displayLibrary() {
 }
 
 function openForm() {
-  formDiv.style.display = "flex";
-  formDiv.style.flexDirection = "column";
+  formDiv.style.display = "block";
 }
 
 function closeForm() {
@@ -137,6 +136,11 @@ function addNewBookByUser(event) {
 
 newBookBtn.addEventListener("click", openForm);
 cancelBtn.addEventListener("click", closeForm);
+window.addEventListener("click", (event) => {
+  if (event.target == formDiv) {
+    formDiv.style.display = "none";
+  }
+});
 
 newBookForm.addEventListener("submit", (event) => {
   addNewBookByUser(event);
