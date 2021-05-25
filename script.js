@@ -149,7 +149,10 @@ window.addEventListener("click", (event) => {
 
 newBookForm.addEventListener("submit", (event) => {
   for (let i = 0; i < myLibrary.length; i++) {
-    if (newBookForm.elements.title.value == myLibrary[i].title) {
+    if (
+      newBookForm.elements.title.value == myLibrary[i].title &&
+      newBookForm.elements.author.value == myLibrary[i].author
+    ) {
       alert("Book is already in the Library!");
       return;
     }
