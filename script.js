@@ -9,7 +9,7 @@ let myLibrary = [];
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 
-const theLotr = new Book("The LOTR", "J.R.R. Tolkien", 500, false);
+const theLotr = new Book("The Lord of the Rings", "J.R.R. Tolkien", 500, false);
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -36,8 +36,9 @@ addBookToLibrary(theLotr);
 function displayBook(book) {
   const bookDiv = document.createElement("div");
   const bookInfoDiv = document.createElement("div");
+  const bookReadBtnDiv = document.createElement("div");
   const bookTitle = document.createElement("h2");
-  const removeBookBtn = document.createElement("button");
+  const removeBookBtn = document.createElement("span");
   const bookAuthor = document.createElement("p");
   const bookPages = document.createElement("p");
   const bookReadBtn = document.createElement("button");
@@ -48,9 +49,10 @@ function displayBook(book) {
   bookReadBtn.classList.add("btn-read");
   bookReadIcon.classList.add("far");
   removeBookBtn.classList.add("btn-remove");
+  bookReadBtnDiv.classList.add("book-read-btn-container");
 
   bookReadBtn.textContent = "Read: ";
-  removeBookBtn.textContent = "Remove";
+  removeBookBtn.textContent = "×";
 
   bookTitle.textContent = `${book.title}`;
   bookAuthor.textContent = `Author: ${book.author}`;
@@ -64,12 +66,13 @@ function displayBook(book) {
 
   container.appendChild(bookDiv);
   bookDiv.appendChild(bookInfoDiv);
+  bookInfoDiv.appendChild(removeBookBtn);
   bookInfoDiv.appendChild(bookTitle);
   bookInfoDiv.appendChild(bookAuthor);
   bookInfoDiv.appendChild(bookPages);
-  bookInfoDiv.appendChild(bookReadBtn);
+  bookInfoDiv.appendChild(bookReadBtnDiv);
+  bookReadBtnDiv.appendChild(bookReadBtn);
   bookReadBtn.appendChild(bookReadIcon);
-  bookInfoDiv.appendChild(removeBookBtn);
 
   changeReadStatusOnClick(bookReadBtn, book);
   removeBookOnClick(removeBookBtn, book);
@@ -105,16 +108,18 @@ function changeReadStatusOnClick(btn, bookObj) {
 
 function removeBookOnClick(btn, bookObj) {
   btn.addEventListener("click", () => {
-    console.log(bookObj);
-    const bookIndex = myLibrary.indexOf(bookObj);
-    console.log(bookIndex);
-    myLibrary.splice(myLibrary.indexOf(bookObj), 1);
+    if (confirm("Are you sure you want to delete this book from Library?")) {
+      console.log(bookObj);
+      const bookIndex = myLibrary.indexOf(bookObj);
+      console.log(bookIndex);
+      myLibrary.splice(myLibrary.indexOf(bookObj), 1);
 
-    const divBooks = document.querySelectorAll(".book");
-    console.log(divBooks[bookIndex]);
-    divBooks[bookIndex].remove();
+      const divBooks = document.querySelectorAll(".book");
+      console.log(divBooks[bookIndex]);
+      divBooks[bookIndex].remove();
 
-    console.log(myLibrary);
+      console.log(myLibrary);
+    }
   });
 }
 
@@ -130,7 +135,6 @@ function addNewBookByUser(event) {
   newBookForm.reset();
   closeForm();
   displayBook(newBook);
-  // displayLibrary();
   console.log(myLibrary);
 }
 
@@ -139,36 +143,18 @@ cancelBtn.addEventListener("click", closeForm);
 window.addEventListener("click", (event) => {
   if (event.target == formDiv) {
     formDiv.style.display = "none";
+    newBookForm.reset();
   }
 });
 
 newBookForm.addEventListener("submit", (event) => {
+  for (let i = 0; i < myLibrary.length; i++) {
+    if (newBookForm.elements.title.value == myLibrary[i].title) {
+      alert("Book is already in the Library!");
+      return;
+    }
+  }
   addNewBookByUser(event);
 });
 
 displayLibrary();
-
-// let readBtns = document.getElementsByClassName("btn-read");
-// console.log(readBtns);
-
-// // for (i = 0; i < readBtns.length; i++) {
-// //   console.log(readBtns[i]);
-// // }
-
-// [...readBtns].forEach((btn, index) => {
-//   // Array.prototype.forEach.call(readBtns, function (btn) {
-//   console.log(btn);
-//   btn.addEventListener("click", () => {
-//     console.log(btn);
-//     console.log(readBtns);
-//     //   btn.childNodes[1].classList.toggle("fa-check-circle");
-//     //   btn.childNodes[1].classList.toggle("fa-times-circle");
-
-//     //   if (myLibrary[index].read) {
-//     //     myLibrary[index].read = false;
-//     //   } else {
-//     //     myLibrary[index].read = true;
-//     //   }
-//     //   console.log(myLibrary[index]);
-//   });
-// });

@@ -1,29 +1,112 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
+:root {
+  --btn-color: #5a7362;
+  --text-color: #0d2c1a;
+  --book-card-bg-color: #f2f2f2;
+  --book-card-border-color: #7b8c83;
+}
+
 body {
   font-family: "Roboto", sans-serif;
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
 }
 
 h1 {
-  font-size: 50px;
+  font-size: 75px;
   font-weight: 100;
   align-self: center;
+  border-bottom: 2px solid var(--book-card-border-color);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .new-book-btn {
   align-self: flex-end;
-  width: 100px;
-  height: 25px;
+  width: 120px;
+  height: 40px;
+  margin-right: 30px;
 }
 
 .container {
   align-self: center;
   width: 70vw;
   display: grid;
-  grid-template-columns: repeat(4, 25%);
-  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+}
+
+.book {
+  background-color: var(--book-card-bg-color);
+  border: 2px solid var(--book-card-border-color);
+  border-radius: 10px;
+}
+
+.book-info-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.book-info-container h2 {
+  margin: 0px;
+  margin-bottom: 10px;
+  font-size: 30px;
+  font-weight: 800;
+  margin: 10px 5px 0 10px;
+}
+
+.book-info-container p {
+  margin: 0px;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: thin;
+  margin: 10px 10px 0 10px;
+}
+
+.btn-remove {
+  align-self: flex-end;
+  color: var(--btn-color);
+  font-size: 25px;
+  font-weight: 100;
+  text-align: center;
+  margin: 10px 15px 0 0;
+}
+
+.book-read-btn-container {
+  align-self: flex-end;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-items: end;
+}
+
+.btn-read {
+  align-self: flex-end;
+  margin: 15px 15px 15px 0;
+  height: 40px;
+  width: 100px;
+}
+
+.far {
+  position: relative;
+  top: 2px;
+  left: 5px;
+  font-size: 20px;
 }
 
 /* The popup form div - hidden by default */
@@ -35,19 +118,18 @@ h1 {
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
-  padding-top: 50%;
-  padding-left: 50%;
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  backdrop-filter: blur(2px);
 }
 
 .form-container {
   position: fixed;
-  border: 3px solid #f1f1f1;
-  top: 50%;
+  border: 3px solid #7b8c83;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 }
 
 .form {
@@ -56,14 +138,4 @@ h1 {
 
   padding: 10px;
   background-color: white;
-}
-
-.book {
-  background-color: antiquewhite;
-  border: 1px solid black;
-  margin: 5px;
-}
-
-.book-info-container {
-  margin: 10px;
 }
