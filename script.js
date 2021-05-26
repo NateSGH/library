@@ -154,6 +154,7 @@ newBookForm.addEventListener("submit", (event) => {
       newBookForm.elements.author.value == myLibrary[i].author
     ) {
       alert("Book is already in the Library!");
+      event.preventDefault();
       return;
     }
   }
