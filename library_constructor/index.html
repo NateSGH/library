@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" />
+  <title>Library</title>
+  <link rel="shortcut icon" type="image/jpg" href="favicon.png" />
+</head>
+
+<body>
+  <h1>Library</h1>
+
+  <button class="btn new-book-btn">NEW BOOK</button>
+
+  <div class="container"></div>
+
+  <div class="new-book-form">
+    <div class="form-container">
+      <form action="" class="form">
+        <p>Add new book</p>
+        <label for="title">Book title</label>
+        <input type="text" placeholder="Enter title" id="title" required>
+
+        <label for="author">Book author</label>
+        <input type="text" placeholder="Enter author" id="author" required>
+
+        <label for="pages">Number of pages</label>
+        <input type="number" placeholder="Enter number of pages" id="pages"
+          required>
+        <div>
+          <input type="checkbox" id="read">
+          <label for="read"> I read this book</label>
+        </div>
+        <div class="form-btns">
+          <button type="submit" class="btn add-book-btn">Add Book</button>
+          <button class="btn cancel" onclick="closeForm()">Close</button>
+        </div>
+      </form>
+    </div>
+
+
+
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
